@@ -64,13 +64,13 @@ class Game:
                 )
         
         self.instructions1 = Text(color=linecolor2,fontLocation=Fonts.amaticBoldfont,wordsSize=50,
-                words="You are handed 12 cards, and start with 3 points", x=(GameGUI.display_width/2), y=100
+                words="You are handed 12 cards, and start with 0 points", x=(GameGUI.display_width/2), y=100
                 )
         self.instructions2 = Text(color=linecolor2,fontLocation=Fonts.amaticBoldfont, wordsSize=50,
                 words='Your deck is split evenly between rock, paper, and scissors', x=(GameGUI.display_width/2), y=200
                 )
         self.instructions3 = Text(color=linecolor2,fontLocation=Fonts.amaticBoldfont, wordsSize=50,
-                words="The only way to win is to get to 6 points", x=(GameGUI.display_width/2), y=300
+                words="Win by getting 4 points, or more than the other player", x=(GameGUI.display_width/2), y=300
                 )
         self.clicktocontinue = Text(color=linecolor1,fontLocation=Fonts.amaticBoldfont, wordsSize=40,
                 words="Click to continue", x=(GameGUI.display_width/2), y=450
@@ -301,7 +301,7 @@ class Game:
             self.allcardtotals['p1'] += int(i)
             self.allcardtotals['p2'] += int(j)
             
-    def createPlayers(self, score=3):
+    def createPlayers(self, score=0):
         self.player1 = self.getNewPlayer(score)
         if self.playcomputer==True:
             self.player2 = self.getNewPlayer(score, self.playComputer)
@@ -328,7 +328,6 @@ class Game:
         waitforclick.true()
         self.inputLoop()
             
-
 
     def cardInput(self):
     
@@ -416,12 +415,12 @@ class Game:
         
     def getWinner(self):
 #         print(self.allcardtotals)
-        if(int(self.player1.score) == 8) or ((self.allcardtotals['p1']+self.allcardtotals['p2']==0) and 
+        if(int(self.player1.score) == 4) or ((self.allcardtotals['p1']+self.allcardtotals['p2']==0) and 
                 int(self.player1.score) > int(self.player2.score)
                 ):
             self.winScene(self.p1winstextmultiline)
 
-        elif(int(self.player2.score) == 8) or ((self.allcardtotals['p1']+self.allcardtotals['p2']==0) and 
+        elif(int(self.player2.score) == 4) or ((self.allcardtotals['p1']+self.allcardtotals['p2']==0) and 
                 int(self.player2.score) > int(self.player1.score)
                 ):
             self.winScene(self.p2winstextmultiline)
